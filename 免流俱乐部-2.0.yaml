@@ -1,0 +1,255 @@
+##########
+## 免流俱乐部-分享配置
+## 版本v2.0
+## 免流俱乐部 TG群组：https://t.me/mljulebuqz
+## 一份简洁、高效、易维护的配置
+
+## 【详情】
+## 策略组采用 手动+自动。
+## 国内策略组为常规的正则过滤，国际策略组过滤采用"排尽法" 释义：排尽了国内剩下的就是国际节点！所以不需要写国际国家相关的名字进行正则过滤。
+## 规则采用规则集，进程规则与兜底规则为免流俱乐部的G库规则，其它为官方规则。
+## 规则采用多重判断匹配。
+## udp跟随策略组完美分流。
+## 初次使用请拉取"代理集"与"规则集"。
+## 可以分享此配置，志同道合的网友可以加TG群一同交流进步！
+
+## 2.0更新日志
+## 修复漏"udp", 官方明确如节点无:"udp: true" 字段则路由规则继续向下匹配，修复逻辑如下:
+## 为了避免部分节点无此字段，本次更新在"proxy-providers"中覆写"udp: true"字段，如此就算部分节点无此字段也会被覆写，避免规则模式下路由规则"漏udp"。
+
+##########
+
+proxy-anchor:
+  proxyjihe: &proxyjihe
+    {type: "http", interval: 43200, proxy: "🌐国际选择"}
+
+  proxyfuxie: &proxyfuxie
+    {override: {udp: true}}
+
+  chainfuxie: &chainfuxie
+    {override: {udp: true, dialer-proxy: "🔗链式前置"}}
+
+proxy-providers:
+  代理集合:
+    {<<: [*proxyjihe, *proxyfuxie], path: "./proxy_providers/代理集合.yaml",
+    url: "订阅链接"}
+
+  链式集合:
+    {<<: [*proxyjihe, *chainfuxie], path: "./proxy_providers/链式集合.yaml",
+    url: "订阅链接"}
+
+mixed-port: 7890
+allow-lan: true
+bind-address: "*"
+mode: "rule"
+log-level: "silent"
+ipv6: true
+find-process-mode: "always"
+unified-delay: true
+tcp-concurrent: true
+
+tun:
+  enable: true
+  stack: "gvisor"
+  device: "utun0"
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack: ["udp://any:53", "tcp://any:53"]
+
+dns:
+  enable: true
+  respect-rules: true
+  listen: "0.0.0.0:1053"
+  ipv6: true
+  enhanced-mode: "fake-ip"
+  fake-ip-range: "198.18.0.1/16"
+  fake-ip-range6: "fdfe:dcba:9876::1/64"
+  default-nameserver: ["system"]
+  direct-nameserver: ["system"]
+  proxy-server-nameserver: ["system"]
+  nameserver: ["https://dns.google/dns-query"]
+  nameserver-policy: {"rule-set:国内域名": ["https://doh.pub/dns-query"]}
+
+ntp:
+  enable: true
+  server: "time.google.com"
+  port: 123
+  interval: 30
+  dialer-proxy: "🌐国际选择"
+
+strategy-anchor:
+  filter_cn: &filter_cn
+    "((北京|天津|上海|重庆)|\
+    (河北|石家庄|唐山|秦皇岛|邯郸|邢台|保定|张家口|承德|沧州|廊坊|衡水)|\
+    (山西|太原|大同|阳泉|长治|晋城|朔州|忻州|吕梁|晋中|临汾|运城)|\
+    (辽宁|沈阳|大连|鞍山|抚顺|本溪|丹东|锦州|营口|阜新|辽阳|盘锦|铁岭|朝阳|葫芦岛)|\
+    (吉林|长春|吉林|四平|辽源|通化|白山|白城|延边|松原)|\
+    (黑龙江|哈尔滨|齐齐哈尔|鸡西|鹤岗|双鸭山|大庆|伊春|佳木斯|七台河|牡丹江|黑河|绥化|大兴安岭)|\
+    (江苏|南京|无锡|徐州|常州|苏州|南通|连云港|淮安|盐城|扬州|镇江|泰州|宿迁)|\
+    (浙江|杭州|宁波|温州|绍兴|湖州|嘉兴|金华|衢州|台州|丽水|舟山)|\
+    (安徽|合肥|芜湖|蚌埠|淮南|马鞍山|淮北|铜陵|安庆|黄山|阜阳|宿州|滁州|六安|宣城|池州|亳州)|\
+    (福建|福州|厦门|宁德|莆田|泉州|漳州|龙岩|三明|南平)|\
+    (江西|南昌|景德镇|萍乡|九江|新余|鹰潭|赣州|吉安|宜春|抚州|上饶)|\
+    (山东|济南|青岛|淄博|枣庄|东营|烟台|潍坊|济宁|泰安|威海|日照|临沂|德州|聊城|滨州|菏泽)|\
+    (河南|郑州|开封|洛阳|平顶山|安阳|鹤壁|新乡|焦作|濮阳|许昌|漯河|三门峡|商丘|周口|驻马店|南阳|信阳|济源)|\
+    (湖北|武汉|黄石|十堰|荆州|宜昌|襄阳|鄂州|荆门|黄冈|孝感|咸宁|随州|恩施)|\
+    (湖南|长沙|株洲|湘潭|衡阳|邵阳|岳阳|张家界|益阳|常德|娄底|郴州|永州|怀化|湘西)|\
+    (广东|广州|深圳|珠海|汕头|佛山|韶关|湛江|肇庆|江门|茂名|惠州|梅州|汕尾|河源|阳江|清远|东莞|中山|潮州|揭阳|云浮)|\
+    (海南|海口|三亚|三沙|儋州)|\
+    (四川|成都|绵阳|自贡|攀枝花|泸州|德阳|广元|遂宁|内江|乐山|资阳|宜宾|南充|达州|雅安|阿坝|甘孜|凉山|广安|巴中|眉山)|\
+    (贵州|贵阳|六盘水|遵义|安顺|铜仁|毕节|黔西南|黔东南|黔南)|\
+    (云南|昆明|昭通|曲靖|楚雄|玉溪|红河|文山|普洱|西双版纳|大理|保山|德宏|丽江|怒江|迪庆|临沧)|\
+    (陕西|西安|铜川|宝鸡|咸阳|渭南|汉中|安康|商洛|延安|榆林)|\
+    (甘肃|兰州|金昌|白银|天水|武威|张掖|平凉|酒泉|庆阳|定西|陇南|临夏|甘南|嘉峪关)|\
+    (青海|西宁|海东|海北|黄南|海南|果洛|玉树|海西)|\
+    (内蒙古|呼和浩特|包头|乌海|赤峰|通辽|鄂尔多斯|呼伦贝尔|乌兰察布|巴彦淖尔|兴安|阿拉善|锡林郭勒)|\
+    (广西|南宁|柳州|桂林|梧州|北海|崇左|来宾|贺州|百色|河池|钦州|防城港|贵港|玉林)|\
+    (西藏|拉萨|昌度|山南|日喀则|那曲|阿里|林芝)|\
+    (宁夏|银川|石嘴山|吴忠|固原|中卫)|\
+    (新疆|乌鲁木齐|吐鲁番|哈密|昌吉|博乐|伊宁|塔城|阿勒泰|克拉玛依|库尔勒|阿克苏|阿图什|喀什|和田|石河子))"
+
+  exclude_general: &exclude_general
+    "(?i)(TG|电报|官网|流量|到期|打开|开启|以下|群组|频道)"
+
+  exclude_cn: &exclude_cn
+    "(?i)(TG|电报|官网|流量|到期|打开|开启|以下|群组|频道)"
+
+  exclude_intl: &exclude_intl
+    "(?i)(TG|电报|官网|流量|到期|打开|开启|以下|群组|频道)`\
+    ((北京|天津|上海|重庆)|\
+    (河北|石家庄|唐山|秦皇岛|邯郸|邢台|保定|张家口|承德|沧州|廊坊|衡水)|\
+    (山西|太原|大同|阳泉|长治|晋城|朔州|忻州|吕梁|晋中|临汾|运城)|\
+    (辽宁|沈阳|大连|鞍山|抚顺|本溪|丹东|锦州|营口|阜新|辽阳|盘锦|铁岭|朝阳|葫芦岛)|\
+    (吉林|长春|吉林|四平|辽源|通化|白山|白城|延边|松原)|\
+    (黑龙江|哈尔滨|齐齐哈尔|鸡西|鹤岗|双鸭山|大庆|伊春|佳木斯|七台河|牡丹江|黑河|绥化|大兴安岭)|\
+    (江苏|南京|无锡|徐州|常州|苏州|南通|连云港|淮安|盐城|扬州|镇江|泰州|宿迁)|\
+    (浙江|杭州|宁波|温州|绍兴|湖州|嘉兴|金华|衢州|台州|丽水|舟山)|\
+    (安徽|合肥|芜湖|蚌埠|淮南|马鞍山|淮北|铜陵|安庆|黄山|阜阳|宿州|滁州|六安|宣城|池州|亳州)|\
+    (福建|福州|厦门|宁德|莆田|泉州|漳州|龙岩|三明|南平)|\
+    (江西|南昌|景德镇|萍乡|九江|新余|鹰潭|赣州|吉安|宜春|抚州|上饶)|\
+    (山东|济南|青岛|淄博|枣庄|东营|烟台|潍坊|济宁|泰安|威海|日照|临沂|德州|聊城|滨州|菏泽)|\
+    (河南|郑州|开封|洛阳|平顶山|安阳|鹤壁|新乡|焦作|濮阳|许昌|漯河|三门峡|商丘|周口|驻马店|南阳|信阳|济源)|\
+    (湖北|武汉|黄石|十堰|荆州|宜昌|襄阳|鄂州|荆门|黄冈|孝感|咸宁|随州|恩施)|\
+    (湖南|长沙|株洲|湘潭|衡阳|邵阳|岳阳|张家界|益阳|常德|娄底|郴州|永州|怀化|湘西)|\
+    (广东|广州|深圳|珠海|汕头|佛山|韶关|湛江|肇庆|江门|茂名|惠州|梅州|汕尾|河源|阳江|清远|东莞|中山|潮州|揭阳|云浮)|\
+    (海南|海口|三亚|三沙|儋州)|\
+    (四川|成都|绵阳|自贡|攀枝花|泸州|德阳|广元|遂宁|内江|乐山|资阳|宜宾|南充|达州|雅安|阿坝|甘孜|凉山|广安|巴中|眉山)|\
+    (贵州|贵阳|六盘水|遵义|安顺|铜仁|毕节|黔西南|黔东南|黔南)|\
+    (云南|昆明|昭通|曲靖|楚雄|玉溪|红河|文山|普洱|西双版纳|大理|保山|德宏|丽江|怒江|迪庆|临沧)|\
+    (陕西|西安|铜川|宝鸡|咸阳|渭南|汉中|安康|商洛|延安|榆林)|\
+    (甘肃|兰州|金昌|白银|天水|武威|张掖|平凉|酒泉|庆阳|定西|陇南|临夏|甘南|嘉峪关)|\
+    (青海|西宁|海东|海北|黄南|海南|果洛|玉树|海西)|\
+    (内蒙古|呼和浩特|包头|乌海|赤峰|通辽|鄂尔多斯|呼伦贝尔|乌兰察布|巴彦淖尔|兴安|阿拉善|锡林郭勒)|\
+    (广西|南宁|柳州|桂林|梧州|北海|崇左|来宾|贺州|百色|河池|钦州|防城港|贵港|玉林)|\
+    (西藏|拉萨|昌度|山南|日喀则|那曲|阿里|林芝)|\
+    (宁夏|银川|石嘴山|吴忠|固原|中卫)|\
+    (新疆|乌鲁木齐|吐鲁番|哈密|昌吉|博乐|伊宁|塔城|阿勒泰|克拉玛依|库尔勒|阿克苏|阿图什|喀什|和田|石河子))"
+
+  filterjihe_general: &filterjihe_general
+    {exclude-filter: *exclude_general}
+
+  filterjihe_cn: &filterjihe_cn
+    {filter: *filter_cn, exclude-filter: *exclude_cn}
+
+  filterjihe_intl: &filterjihe_intl
+    {exclude-filter: *exclude_intl}
+
+  selectgroups_general: &selectgroups_general
+    {<<: *filterjihe_general, type: "select", timeout: 1000, url: "http://www.gstatic.com/generate_204"}
+
+  selectgroups_cn: &selectgroups_cn
+    {<<: *filterjihe_cn, type: "select", timeout: 1000, url: "http://www.baidu.com"}
+  
+  selectgroups_intl: &selectgroups_intl
+    {<<: *filterjihe_intl, type: "select", timeout: 1000, url: "http://www.google.com"}
+
+  testgroups_cn: &testgroups_cn
+    {<<: *filterjihe_cn, type: "url-test", hidden: true, interval: 300, tolerance: 30, timeout: 1000, url: "http://www.baidu.com"}
+
+  testgroups_intl: &testgroups_intl
+    {<<: *filterjihe_intl, type: "url-test", hidden: true, interval: 300, tolerance: 30, timeout: 1000, url: "http://www.google.com"}
+
+proxy-groups:
+  - name: "GLOBAL"
+    type: "select"
+    proxies: ["🌀全局模式", "🎯节点选择", "🇨🇳国内选择", "🌐国际选择", "🔗链式前置", "🔗链式落地"]
+
+  - name: "🌀全局模式"
+    type: "select"
+    proxies: ["📜规则模式", "🎯节点选择", "🇨🇳国内选择", "🌐国际选择"]
+
+  - name: "🎯节点选择"
+    proxies: ["REJECT", "DIRECT"]
+    use: ["代理集合"]
+    <<: *selectgroups_general
+
+  - name: "🇨🇳国内选择"
+    proxies: ["🎯节点选择", "🤖自动🇨🇳集合", "🔗链式落地"]
+    use: ["代理集合"]
+    <<: *selectgroups_cn
+
+  - name: "🌐国际选择"
+    proxies: ["🎯节点选择", "🤖自动🌐集合", "🔗链式落地"]
+    use: ["代理集合"]
+    <<: *selectgroups_intl
+
+  - name: "🔗链式前置"
+    proxies: ["🎯节点选择", "🤖自动🇨🇳集合"]
+    use: ["代理集合"]
+    <<: *selectgroups_cn
+
+  - name: "🔗链式落地"
+    proxies: ["REJECT", "🤖自动🌐🔗集合"]
+    use: ["链式集合"]
+    <<: *selectgroups_general
+
+  - name: "📜规则模式"
+    type: "select"
+    proxies: ["PASS"]
+    hidden: true
+
+  - name: "🤖自动🇨🇳集合"
+    use: ["代理集合"]
+    <<: *testgroups_cn
+
+  - name: "🤖自动🌐集合"
+    use: ["代理集合"]
+    <<: *testgroups_intl 
+
+  - name: "🤖自动🌐🔗集合"
+    use: ["链式集合"]
+    <<: *testgroups_intl
+
+rule-anchor:
+  rule_domain: &rule_domain {type: "http", interval: 43200, proxy: "🌐国际选择", behavior: "domain", format: "mrs"}
+  rule_ipcidr: &rule_ipcidr {type: "http", interval: 43200, proxy: "🌐国际选择", behavior: "ipcidr", format: "mrs"}
+  rule_classical: &rule_classical {type: "http", interval: 43200, proxy: "🌐国际选择", behavior: "classical", format: "yaml"}
+
+rule-providers:
+  国内域名: {<<: *rule_domain, path: "./rule_providers/国内域名.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  国际域名: {<<: *rule_domain, path: "./rule_providers/国际域名.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  屏蔽域名: {<<: *rule_domain, path: "./rule_providers/屏蔽域名.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs"}
+  广告域名: {<<: *rule_domain, path: "./rule_providers/广告域名.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ads-all.mrs"}
+  私有域名: {<<: *rule_domain, path: "./rule_providers/私有域名.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
+  私有地址: {<<: *rule_ipcidr, path: "./rule_providers/私有地址.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
+  国内地址: {<<: *rule_ipcidr, path: "./rule_providers/国内地址.mrs", url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
+  国内域兜: {<<: *rule_classical, path: "./rule_providers/国内域兜.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/domain/国内域兜.yaml"}
+  国际域兜: {<<: *rule_classical, path: "./rule_providers/国际域兜.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/domain/国际域兜.yaml"}
+  拒绝域兜: {<<: *rule_classical, path: "./rule_providers/拒绝域兜.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/domain/拒绝域兜.yaml"}
+  直连域兜: {<<: *rule_classical, path: "./rule_providers/直连域兜.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/domain/直连域兜.yaml"}
+  国内进程: {<<: *rule_classical, path: "./rule_providers/国内进程.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/general/国内进程.yaml"}
+  国际进程: {<<: *rule_classical, path: "./rule_providers/国际进程.yaml", url: "https://raw.githubusercontent.com/ke666e/rulebase/mihomo/rule/general/国际进程.yaml"}
+
+rules:
+  - "MATCH,🌀全局模式"
+  - "RULE-SET,国内进程,🇨🇳国内选择"
+  - "RULE-SET,国际进程,🌐国际选择"
+  - "RULE-SET,广告域名,REJECT"
+  - "RULE-SET,拒绝域兜,REJECT"
+  - "RULE-SET,私有域名,DIRECT"
+  - "RULE-SET,直连域兜,DIRECT"
+  - "AND,((RULE-SET,国内域名),(NOT,((OR,((RULE-SET,屏蔽域名),(RULE-SET,国际域名),(RULE-SET,国际域兜)))))),🇨🇳国内选择"
+  - "RULE-SET,国内域兜,🇨🇳国内选择"
+  - "RULE-SET,私有地址,DIRECT,no-resolve"
+  - "RULE-SET,国内地址,🇨🇳国内选择,no-resolve"
+  - "MATCH,🌐国际选择"
