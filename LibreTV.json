@@ -540,7 +540,7 @@
     },
     {
       "name": "央视频",
-      "url": "https://iptv.ygw.kdns.fr/txt",
+      "url": "https://iptv.ygw.kdns.fr/m3u",
       "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
     }
   ]
