@@ -12,7 +12,7 @@
       "name": "AV-155资源",
       "url": "https://155api.com/api.php/provide/vod",
       "detail": "https://155api.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "TV-360资源",
@@ -171,7 +171,7 @@
       "name": "AV-百万资源",
       "url": "https://api.bwzyz.com/api.php/provide/vod",
       "detail": "https://api.bwzyz.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "TV-百度云资源",
@@ -300,124 +300,124 @@
       "name": "AV-91麻豆",
       "url": "https://91md.me/api.php/provide/vod",
       "detail": "https://91md.me",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-AIvin",
       "url": "http://lbapiby.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-JKUN资源",
       "url": "https://jkunzyapi.com/api.php/provide/vod",
       "detail": "https://jkunzyapi.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-souav资源",
       "url": "https://api.souavzy.vip/api.php/provide/vod",
       "detail": "https://api.souavzy.vip",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-乐播资源",
       "url": "https://lbapi9.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-奥斯卡资源",
       "url": "https://aosikazy.com/api.php/provide/vod",
       "detail": "https://aosikazy.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-奶香香",
       "url": "https://Naixxzy.com/api.php/provide/vod",
       "detail": "https://Naixxzy.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-森林资源",
       "url": "https://slapibf.com/api.php/provide/vod",
       "detail": "https://slapibf.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-淫水机资源",
       "url": "https://www.xrbsp.com/api/json.php",
       "detail": "https://www.xrbsp.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-玉兔资源",
       "url": "https://apiyutu.com/api.php/provide/vod",
       "detail": "https://apiyutu.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-番号资源",
       "url": "http://fhapi9.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-白嫖资源",
       "url": "https://www.kxgav.com/api/json.php",
       "detail": "https://www.kxgav.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-精品资源",
       "url": "https://www.jingpinx.com/api.php/provide/vod",
       "detail": "https://www.jingpinx.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-美少女资源",
       "url": "https://www.msnii.com/api/json.php",
       "detail": "https://www.msnii.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-老色逼资源",
       "url": "https://apilsbzy1.com/api.php/provide/vod",
       "detail": "https://apilsbzy1.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-色南国",
       "url": "https://api.sexnguon.com/api.php/provide/vod",
       "detail": "https://api.sexnguon.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-色猫资源",
       "url": "https://api.maozyapi.com/inc/apijson_vod.php",
       "detail": "https://api.maozyapi.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-辣椒资源",
       "url": "https://apilj.com/api.php/provide/vod",
       "detail": "https://apilj.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-香奶儿资源",
       "url": "https://www.gdlsp.com/api/json.php",
       "detail": "https://www.gdlsp.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-鲨鱼资源",
       "url": "https://shayuapi.com/api.php/provide/vod",
       "detail": "https://shayuapi.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "AV-黄AV资源",
       "url": "https://www.pgxdy.com/api/json.php",
       "detail": "https://www.pgxdy.com",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "非凡影视",
@@ -434,12 +434,12 @@
     {
       "name": "快播资源网站",
       "url": "https://gayapi.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "杏吧资源",
       "url": "https://xingba111.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "爱短剧.cc",
@@ -489,7 +489,7 @@
     {
       "name": "黄色资源啊啊",
       "url": "https://hsckzy888.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "小鸡资源",
@@ -514,7 +514,7 @@
     {
       "name": "细胞采集黄色",
       "url": "https://www.xxibaozyw.com/api.php/provide/vod",
-      "isAdult": true
+      "isAdult": false
     },
     {
       "name": "七七影视",
@@ -533,64 +533,14 @@
     }
   ],
   "liveSources": [
-    {
-      "name": "萌萌TV",
-      "url": "http://45.192.97.170:5211/141864",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "体育赛事",
-      "url": "http://45.192.97.170:5211/789123",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "猫影视TV",
-      "url": "http://45.192.97.170:5211/789456",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "易发TV",
-      "url": "http://45.192.97.170:5211/789741",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "酒店合集",
-      "url": "http://45.192.97.170:6001/txt",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "组播合集",
-      "url": "https://40.tv1288.xyz/",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "风云TV4",
-      "url": "http://iptv.4666888.xyz/FYTV.txt",
+   {
+      "name": "live",
+      "url": "https://live.zbds.top/tv/iptv4.m3u",
       "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
     },
     {
       "name": "央视频",
       "url": "http://45.192.97.170:10001/live.m3u",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "YY影视轮播",
-      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/yylunbo.m3u",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "虎牙影视一起看",
-      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/huyayqk.m3u",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "斗鱼影视一起看",
-      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/douyuyqk.m3u",
-      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
-    },
-    {
-      "name": "B站影视直播",
-      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/bililive.m3u",
       "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
     }
   ]
