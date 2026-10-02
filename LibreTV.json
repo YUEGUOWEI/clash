@@ -1,5 +1,5 @@
 {
-  "name": "我的LibreTV影视订阅",
+  "name": "LibreTV",
   "version": 2,
   "sources": [
     {
@@ -525,7 +525,73 @@
       "name": "饭团影视",
       "url": "https://www.fantuan.tv/api.php/provide/vod/",
       "isAdult": false
+    },
+    {
+      "name": "新6V磁力",
+      "url": "https://www.xb6v.com/",
+      "isAdult": false
     }
   ],
-  "liveSources": []
+  "liveSources": [
+    {
+      "name": "萌萌TV",
+      "url": "http://45.192.97.170:5211/141864",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "体育赛事",
+      "url": "http://45.192.97.170:5211/789123",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "猫影视TV",
+      "url": "http://45.192.97.170:5211/789456",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "易发TV",
+      "url": "http://45.192.97.170:5211/789741",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "酒店合集",
+      "url": "http://45.192.97.170:6001/txt",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "组播合集",
+      "url": "https://40.tv1288.xyz/",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "风云TV4",
+      "url": "http://iptv.4666888.xyz/FYTV.txt",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "央视频",
+      "url": "http://45.192.97.170:10001/live.m3u",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "YY影视轮播",
+      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/yylunbo.m3u",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "虎牙影视一起看",
+      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/huyayqk.m3u",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "斗鱼影视一起看",
+      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/douyuyqk.m3u",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    },
+    {
+      "name": "B站影视直播",
+      "url": "https://raw.githubusercontent.com/mursor1985/LIVE/refs/heads/main/bililive.m3u",
+      "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
+    }
+  ]
 }
