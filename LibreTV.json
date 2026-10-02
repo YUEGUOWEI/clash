@@ -1,0 +1,23 @@
+{
+  "name": "我的精品影视与直播订阅",
+  "version": 2,
+  "sources": [
+    {
+      "name": "卧龙资源",
+      "url": "https://wolongzy.cc/api.php/provide/vod",
+      "detail": "https://wolongzy.cc",
+      "isAdult": false
+    },
+    {
+      "name": "量子资源",
+      "url": "https://cj.lziapi.com/api.php/provide/vod"
+    }
+  ],
+  "liveSources": [
+    {
+      "name": "央视卫视直播",
+      "url": "https://raw.githubusercontent.com/fanmingming/live/main/tv/m3u/ipv6.m3u",
+      "epg": "https://live.fanmingming.com/e.xml"
+    }
+  ]
+}
