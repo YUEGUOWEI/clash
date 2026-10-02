@@ -540,7 +540,7 @@
     },
     {
       "name": "央视频",
-      "url": "http://45.192.97.170:10001/live.m3u",
+      "url": "https://iptv.ygw.kdns.fr/m3u",
       "epg": "https://epg.cdn.loc.cc?ch={name}&date={date}"
     }
   ]
