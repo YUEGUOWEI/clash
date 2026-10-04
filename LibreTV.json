@@ -525,11 +525,6 @@
       "name": "饭团影视",
       "url": "https://www.fantuan.tv/api.php/provide/vod/",
       "isAdult": false
-    },
-    {
-      "name": "新6V磁力",
-      "url": "https://www.xb6v.com/",
-      "isAdult": false
     }
   ],
   "liveSources": [
